@@ -3,9 +3,8 @@ const app = express() // initialize express
 const port = 3000 // setting the port
 const mongoose = require('mongoose');
 const { Schema } = mongoose; // Grab the schema object from mongoose
-require('dotenv').config()
 var cors = require('cors'); // configure CORS policy
-
+require('dotenv').config();
 
 mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0.89oxm.mongodb.net/netflix-dev?retryWrites=true&w=majority`,
 {
@@ -73,7 +72,7 @@ app.post('/login', (req, res) => {
         token: user.id
       });
     }  else {
-      res.send(404, {
+      res.status(404, {
         status: "Not Found"
       })
     }

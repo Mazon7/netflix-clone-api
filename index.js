@@ -56,7 +56,7 @@ app.get('/', (req, res) => {
 app.get('/wishlist', authenticateToken, (req, res) => {
   console.log('I am authenticated');
   console.log(req.user);
-  WishList.findOne({user: user.id})
+  // WishList.findOne({user: user.id})  object for personalized wishlist
   res.send({
     items: [
       "The Avengers",
@@ -102,10 +102,7 @@ app.post('/login', (req, res) => {
   User.findOne({ email: email, password: password }, (err, user) => {
     console.log(user);
     if (user) {
-      console.log(user);
       const token =  generateAccessToken(user);
-      console.log(token);
-
       res.send ({
         status: "valid",
         token: token
